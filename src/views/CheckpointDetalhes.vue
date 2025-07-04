@@ -9,16 +9,17 @@
   
       <h2 class="text-2xl font-bold mb-4 text-gray-700">Detalhes: {{ titulo }}</h2>
   
+ 
+
       <div
         v-for="(item, index) in itens"
         :key="index"
         class="mb-6 pb-4 border-b-2 border-gray-300 last:border-b-0"
       >
-        <p><strong>Log Erro:</strong></p>
+        <p><strong>Descrição Tipo:</strong> {{ item.DESC_TIPO }}</p>  
         <pre class="json-code">{{ item.DESCRICAO }}</pre>
-  
-      
       </div>
+
     </div>
   </template>
   
