@@ -239,7 +239,9 @@ import axios from 'axios'
 
 const tables = {
   'Hangfire_Renault_2.dbo.GM_SFCRM_RECEIVEID': 'Recebimentos GM_SFCRM_RECEIVEID',
-  'NBS_API_AGENDAMENTOS': 'Logs NBS_API_AGENDAMENTOS'
+  'NBS_API_AGENDAMENTOS': 'Logs NBS_API_AGENDAMENTOS',
+  'Hangfire_Renault_2.dbo.leads_received': 'Renault CRMI Fase1',
+
 }
 
 const selectedTable = ref('')

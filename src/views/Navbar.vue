@@ -5,6 +5,8 @@
       <ul class="navbar-links">
         <li><a href="#" @click="store.Navbar=1">Checkpoint</a></li>
         <li><a href="#" @click="store.Navbar=2">Logs</a></li>
+        <li><a href="#" @click="store.Navbar=3">Renovec</a></li>
+        <li><a href="#" @click="store.Navbar=4">Upload</a></li>
       </ul>
       <button class="navbar-toggle" @click="toggleMenu" aria-label="Menu">
         ☰
@@ -14,6 +16,8 @@
     <ul v-if="menuOpen" class="navbar-links-mobile">
       <li><a href="#" @click="store.Navbar=1">Checkpoint</a></li>
       <li><a href="#" @click="store.Navbar=2">Logs</a></li>
+      <li><a href="#" @click="store.Navbar=3">Renovec</a></li>
+      <li><a href="#" @click="store.Navbar=4">Upload</a></li>
     </ul>
   </nav>
 </template>

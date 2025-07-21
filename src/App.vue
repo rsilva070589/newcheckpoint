@@ -11,6 +11,13 @@
   <Parametros />
  </div>
 
+ <div v-if="store.Navbar==3">
+  <Renovec />
+ </div>
+
+ <div v-if="store.Navbar==4">
+  <UploadRenovec />
+ </div>
 
 </template>
 
@@ -22,6 +29,8 @@ import Navbar from './views/Navbar.vue';
 import ListaNotas from '../src/views/ListaNotas.vue';
 import Checkpoint from '../src/views/Checkpoint.vue';
 import Parametros from './views/Parametros.vue';
+import Renovec from './views/Renovec.vue';
+import UploadRenovec from './views/UploadRenovec.vue';
 
 const store = useStore();
 
