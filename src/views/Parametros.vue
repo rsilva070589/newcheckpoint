@@ -241,6 +241,7 @@ const tables = {
   'Hangfire_Renault_2.dbo.GM_SFCRM_RECEIVEID': 'Recebimentos GM_SFCRM_RECEIVEID',
   'NBS_API_AGENDAMENTOS': 'Logs NBS_API_AGENDAMENTOS',
   'Hangfire_Renault_2.dbo.leads_received': 'Renault CRMI Fase1',
+  'Hangfire_Renault_2.dbo.facebook_leads_webhook': 'Facebook',
 
 }
 
