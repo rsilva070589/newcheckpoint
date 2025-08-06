@@ -1,6 +1,7 @@
 <template>
   <div>
     <h2>Renovec - Exportação de Dados</h2>
+    {{ store.birSelecionada }}
 
     <label>
       Mês (YYYY-MM):
@@ -56,6 +57,9 @@
 import { ref } from 'vue'
 import axios from 'axios'
 import { useStore } from '@/stores/store';
+import { watch } from 'vue'
+
+
 
 const store = useStore();
 
@@ -63,6 +67,8 @@ const resultado = ref(null)
 const carregando = ref(false)
 
 store.birSelecionada = 0
+
+
 
 function getMesAtualFormatado() {
   const hoje = new Date()
@@ -173,6 +179,10 @@ function limpar() {
   accessToken = ''
   requisicaoID = ''
 }
+
+watch(bir, (novoValor) => {
+  store.birSelecionada = parseInt(novoValor)
+})
 </script>
 
 <style scoped>

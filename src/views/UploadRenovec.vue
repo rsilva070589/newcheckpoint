@@ -1,4 +1,7 @@
 <template>
+  <div>
+    BIR: {{ store.birSelecionada }}
+  </div>
   <input type="file" @change="handleFile" accept=".csv" />
   <p v-if="csvFile">Arquivo: {{ csvFile.name }}</p>
   <button @click="uploadFile" :disabled="!csvFile">Enviar CSV</button>
@@ -25,15 +28,22 @@ async function uploadFile() {
   formData.append('BIR', store.birSelecionada)
 
   try {
-    const response = await axios.post('https://api.mapsis.com.br/apiexpress/inserirRenaultCSV',  formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
+    const response = await axios.post(
+      'https://api.mapsis.com.br/apiexpress/inserirRenaultCSV',
+      formData,
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
       }
-    })
+    )
     alert('Importado com sucesso!')
   } catch (err) {
-    console.error(err)
-    alert('Erro ao importar CSV')
+    console.error('Erro ao importar CSV:', err)
+
+    const msg = err?.response?.data?.mensagem || err.message || 'Erro inesperado ao importar CSV'
+    alert(`Erro ao importar CSV: ${msg}`)
   }
 }
+
 </script>
