@@ -55,10 +55,14 @@
 <script setup>
 import { ref } from 'vue'
 import axios from 'axios'
+import { useStore } from '@/stores/store';
+
+const store = useStore();
 
 const resultado = ref(null)
 const carregando = ref(false)
 
+store.birSelecionada = 0
 
 function getMesAtualFormatado() {
   const hoje = new Date()
@@ -86,6 +90,7 @@ function delay(ms) {
 }
 
 async function pegarTokenEBir(mesValue, birValue) {
+  store.birSelecionada = birValue;
   try {
     carregando.value = true
     const response = await axios.post('https://api.mapsis.com.br/apiexpress/pegarequisicao', {
