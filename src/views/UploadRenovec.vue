@@ -20,7 +20,7 @@ async function uploadFile() {
   formData.append('file', csvFile.value)
 
   try {
-    const response = await axios.post('http://localhost:3123/inserirRenaultCSV', formData, {
+    const response = await axios.post('https://api.mapsis.com.br/apiexpress/inserirRenaultCSV',  formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

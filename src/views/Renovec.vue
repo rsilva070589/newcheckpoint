@@ -88,7 +88,7 @@ function delay(ms) {
 async function pegarTokenEBir(mesValue, birValue) {
   try {
     carregando.value = true
-    const response = await axios.post('http://localhost:3123/pegarequisicao', {
+    const response = await axios.post('https://api.mapsis.com.br/apiexpress/pegarequisicao', {
       mes: mesValue,
       bir: birValue
     })
