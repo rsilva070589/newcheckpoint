@@ -1,48 +1,93 @@
 <template>
-    <div class="max-w-3xl mx-auto p-4 bg-white rounded-lg shadow-md">
-      <button
-        class="mb-6 text-blue-600 hover:text-blue-800 font-semibold transition-colors"
-        @click="$emit('voltar')"
-      >
-        ← Voltar
-      </button>
-  
-      <h2 class="text-2xl font-bold mb-4 text-gray-700">Detalhes: {{ titulo }}</h2>
-  
+  <div class="max-w-3xl mx-auto p-6 bg-white rounded-2xl shadow-lg border border-gray-200">
+    <!-- Botão Voltar -->
+    <button
+      class="mb-6 flex items-center gap-2 text-blue-600 hover:text-blue-800 font-semibold transition-colors"
+      @click="$emit('voltar')"
+    >
+      <span class="text-xl">←</span> Voltar
+    </button>
+
+    <!-- Título -->
+    <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b pb-2">
+      Detalhes: {{ titulo }}
+    </h2>
+
+    <!-- Lista -->
+    <div
+      v-for="(item, index) in itens"
+      :key="index"
+      class="mb-8 pb-6 border-b border-gray-300 last:border-b-0"
+    >
+      <p class="mb-2 text-gray-700">
+        <strong class="text-gray-900">Descrição Tipo:</strong> {{ item.DESC_TIPO }}
+      </p>
+
+      <pre class="json-code mb-4">{{ item.DESCRICAO }}</pre>
  
-
-      <div
-        v-for="(item, index) in itens"
-        :key="index"
-        class="mb-6 pb-4 border-b-2 border-gray-300 last:border-b-0"
+      <button v-if="item.COD_TIPO == 5"      
+        class="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition-all duration-200"
+   @click="handleReenvio(item.id_registro, 5, index)"
       >
-        <p><strong>Descrição Tipo:</strong> {{ item.DESC_TIPO }}</p>  
-        <pre class="json-code">{{ item.DESCRICAO }}</pre>
-      </div>
+        Reenviar
+      </button>
 
+      <!-- Mensagem de sucesso -->
+      <p v-if="mensagemSucesso[index]" class="mt-2 text-green-600 font-semibold">
+        ✅ Reenviado com sucesso!
+      </p>
     </div>
-  </template>
-  
-  <script setup>
-  defineProps({
-    titulo: String,
-    itens: Array
-  })
-  defineEmits(['voltar'])
-  </script>
-  
-  <style scoped>
-  .json-code {
-    background-color: #2d2d2d;
-    color: #f8f8f2;
-    padding: 1rem;
-    border-radius: 6px;
-    font-family: 'Fira Code', monospace, monospace;
-    font-size: 0.9rem;
-    white-space: pre-wrap; /* permite quebra de linha */
-    overflow-x: auto;
-    box-shadow: inset 0 0 5px #000;
-    line-height: 1.4;
+  </div>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import axios from 'axios';
+
+defineProps({
+  titulo: String,
+  itens: Array
+})
+defineEmits(['voltar'])
+
+// Array para controlar mensagens de sucesso por item
+const mensagemSucesso = ref([])
+
+async function handleReenvio(opportunityId, tipo, index) {
+  try {
+    await axios.post('https://api.mapsis.com.br/apiexpress/reenvia', {
+      opportunityId,
+      tipo
+    });
+
+    // Marca sucesso para este item
+    mensagemSucesso.value[index] = true;
+
+    // Limpa a mensagem depois de 3 segundos
+    setTimeout(() => {
+      mensagemSucesso.value[index] = false;
+    }, 3000);
+
+  } catch (err) {
+    console.error('❌ Erro ao enviar requisição:', err.response?.data || err.message);
+    alert('Erro ao reenviar!'); // opcional
   }
-  </style>
-  
+}
+
+</script>
+
+
+<style scoped>
+.json-code {
+  background-color: #1e1e2f;
+  color: #e4e4e7;
+  padding: 1rem;
+  border-radius: 8px;
+  font-family: 'Fira Code', monospace;
+  font-size: 0.9rem;
+  white-space: pre-wrap; /* permite quebra de linha */
+  overflow-x: auto;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.4);
+  line-height: 1.5;
+}
+</style>
