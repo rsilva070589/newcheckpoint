@@ -244,7 +244,7 @@ const tables = {
   'Hangfire_Renault_2.dbo.leads_send': 'Renault CRMI Fase3 - Leads Rede',
   'Hangfire_Renault_2.dbo.facebook_leads_webhook': 'Facebook',
   'Hangfire_Renault_2.dbo.send_BancoRenovec_mapsis': 'Banco RenovAction',
-  'Hangfire_Renault_2.dbo.ClientesIntegracao': 'Clientes Carrera',
+  'Hangfire_Renault_2.dbo.CARRERA_ClientesIntegracao': 'Clientes Carrera',
 
 }
 
