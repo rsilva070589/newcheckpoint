@@ -131,7 +131,7 @@ async function getExportWithPolling() {
       method: 'get',
       maxBodyLength: Infinity,
       headers: { 
-        'client_id': '1cf5b30f-c8c6-4bd7-935e-53e327cf2763',
+        'client_id': '571be6c4-2195-460f-9c60-c2c0fda9ecb1',
         'access_token': accessToken
       }
     }
@@ -145,7 +145,7 @@ async function getExportWithPolling() {
 
       const config = {
         ...configBase,
-        url: `https://api-rci-qa-channels.bancorcibrasil.com.br/integration/renovaction-data-integration/v1/data-export/${requisicaoID}`
+        url: `https://api-rci.bancorcibrasil.com.br/integration/renovaction-data-integration/v1/data-export/${requisicaoID}`
       }
 
       const response = await axios.request(config)
