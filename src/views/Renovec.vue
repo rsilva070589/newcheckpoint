@@ -81,7 +81,7 @@ const mes = ref(getMesAtualFormatado())
 // Inicializa bir com o primeiro da lista, já formatado com 8 dígitos (ex: 07600550)
 const bir = ref('') // começa vazio, sem seleção
 
-const birOptions = [7600382, 7600449, 7600550, 7600610, 7601112, 7601235, 7601236]
+const birOptions = [7600382, 7600449, 7600550, 7600610, 7601112, 7601235, 7601236, 7601298]
 
 // Função para formatar o BIR com zeros à esquerda
 function formatarBir(birNumber) {
